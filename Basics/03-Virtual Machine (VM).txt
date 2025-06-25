@@ -1,0 +1,27 @@
+DevOps
+
+Virtual Machine (VM)----
+
+A virtual machine is a virtual environment that works like a computer system. It has its own CPU, RAM, storage, and hardware Its a logical separation of one big server into smaller isolated virtual machines with their own properties We do this using a hypervisor
+
+Hypervisor----
+
+A hypervisor is software that installs virtual machines on a physical server (bare metal) It divides a single physical server into different virtual or logical servers also called virtual machines
+
+Popular Hypervisors
+
+VMware
+Xen
+Example
+
+Imagine a company with 3 physical servers:
+
+Server 1 for Team 1
+Server 2 for Team 2
+Server 3 for Team 3
+
+Each server is 100GB but each team uses only 10% of it To use them efficiently we take one physical server and install a hypervisor Using the hypervisor, we split this server logically (not physically) into separate virtual machines: VM1, VM2, and VM3 Each VM has its own CPU, RAM, and storage, and they don’t depend on each other These are just logical servers created by the hypervisor
+
+Real-World Use (AWS, GitHub)
+
+Companies like AWS and GitHub have data centers with many physical servers They install hypervisors on these servers When a user requests a server AWS uses the hypervisor to create a virtual machine based on the users needs for RAM, CPU, and storage In AWS these virtual machines are called EC2 instances

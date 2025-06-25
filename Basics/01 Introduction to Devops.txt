@@ -1,0 +1,18 @@
+
+---Introduction to Devops---
+
+--What is devops?
+
+DevOps is a culture that enhances application delivery by focusing on quality automation and speed its not just about delivering fast but also about ensuring a high-quality product through automation monitoring and continuous testing we automate manual tasks to work efficiently while maintaining quality with proper monitoring and testing in place after improving delivery and automating processes we monitor for issues in automation or quality and report back testing is key in DevOps to check the updated app automated tasks and overall product quality so DevOps improves app delivery by ensuring quality automation monitoring and testing are all part of the process
+
+--Example:-
+--basic explanation of devops 
+
+lets say theres an app or website called example.com weve made version 2 (v2) of it and now the task is to get it live in production without devops it might take 2 weeks but a company hires a devops engineer and they cut that time to 1 week or even 5 days by automating things ensuring the apps quality and doing monitoring and continuous testing
+         
+
+--Why devops?
+
+10 years ago devops wasnt a thing everything was manual developers built the app testers tested it system admins set up servers and build and release engineers deployed it for example to deploy an app youd need an application server set up by the server admin and then the release engineer would put the app on it there were lots of roles like this and it took tons of time with so many manual steps devops came into the picture to fix this—speed up those manual steps and improve app delivery
+
+in the future more tools will come to make things even simpler adopting those will make work faster like how AI is speeding up development now devops came the same way to make things better and quick 

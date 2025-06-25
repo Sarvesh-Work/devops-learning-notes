@@ -1,0 +1,50 @@
+
+---- Software Development Lifecycle (SDLC) ----
+
+--- what is SDLC ---
+
+it is a process or culture used by the software industry to design, develop, and test the product/application The end goal of SDLC is to deliver a high-quality product
+
+--- The phases of the SDLC ----
+
+Planning and requirement
+Defining
+Designing
+Development
+Testing
+Deployment
+These are the standard phases followed by the industry It is a circular approach
+
+DevOps perspective using a simple example ----->
+
+Lets take an example: we are building a to-do list
+
+Planning --> In the planning stage, we plan things like what features we will add to our to-do list, such as creating a to-do list, deleting a to-do list and more and what things we are going to require for this project meaning the tools we can use These things we do in the planning stage.
+
+Defining ---> In the defining stage we list down all the things that we require, including the features in a documented format
+
+Designing --> In the designing phase, we make use of the planning stage. Based on that, we create a high-level and low-level design.
+
+Like in High-level design --->
+
+We define what tech stack we will use, the workflow of the data, and also a deep dive into the optimization of the app like how many users our app can handle, and what we use in the frontend, backend, and database.
+
+In Low-level design --->
+
+Low-level designing just focuses on each part of the high-level design like how the frontend will look UI design, and database structure.
+
+Development ---> Now everything is defined the plan is ready, the tech stack is ready, and the developers start developing the app or website by coding it.
+
+Testing ---> In the testing phase, they test the app and find the bugs in the app
+
+Deployment ---> Deploying the app to the global server so users can use it.
+
+where does DevOps fit in--->
+
+Mostly DevOps works in the development, testing, and deployment phases It is not fixed a DevOps engineer can work in the planning, defining, and designing stages also.
+
+Now, the work of a DevOps engineer is to make things faster/automating  in the development testing, and deployment phases
+
+How is it?
+
+A DevOps engineer can write a script to set up the tools that are required by writing a script so   using that developer can install or boot them  with one click so the developer doesnt have to do it manually every time They can also write a script for GitHub and write a script to set up the server for deployment and many more.
