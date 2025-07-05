@@ -1,0 +1,45 @@
+Linux operating system and basics of shell scripting 
+
+Operating system:- 
+
+operating system is a medium between our hardware and software 
+like android mobile consider Samsung so Samsung creates a mobile and which has ram, battery , speakers on top of that in installs the android  os so user can interact with  hardwares easeyly also installs the external apps so in simple words operating system is use to communicate with the haerdware or when ever any external apps wants to use any hardware os helps the app to communicate with the hardware 
+
+ex of os --> mac , windows , Linux , android 
+
+Linux is a free operating ,open source and its secure so thats why its used Higley in industry 
+
+key features of Linux os : 1. free 
+                           2. open source
+                           3. secure
+                           4. fast
+
+
+basic architecture of Linux : 
+       
+      Linux architecture consist of :
+            kernel , system libraries , system software, Applications, compilers and shell 
+
+kernal - kernal is hart of our operating system it is use to make an communication between our hardware and sofware so key features of kernals are device mangment , memory managment , proccess managment ,cpu        
+
+
+system libraries -  if a user installs any application and that application wants to communicate with the hardware for using like memoery , cpu, or any hardware stuff so it requiest for it to the system libraries and system libraries consiste of set of funcations  or programes which is use to communicate with the kernal so that request gose to the system librarey and then system libraries ask those things to kernal    
+
+compiler - in simple word  compiler converts human-readable source code into machine code (executable format) that a computer can understand and run
+
+Application - application means the exsternal applications like games , chrome means any thing that started by user 
+
+ 
+system software- Basic programs for managing the system (disk utilities, text editors, etc.)
+
+
+shell scripting -- > 
+it  is a way of talking with the os like Linux has shell commands ex --> ls, top , touch  in windows we have like graphical interface 
+for all that things creating file deleting it etc so like that on Linux we have shell commands. 
+
+
+
+
+
+
+

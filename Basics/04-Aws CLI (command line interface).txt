@@ -1,0 +1,44 @@
+--Aws CLI (command line interface)
+
+using this we can access our aws account from our laptop without going to aws ui for that first we have to install the aws cli then authenticate using access key and secret key after completing the authentication we can access all the aws services on terminal
+
+aws cli docs -- > https://docs.aws.amazon.com/cli/latest/reference/
+
+--connect to Ec2 instance through the terminal
+
+--best terminal to use for windows are :
+
+Putty
+
+Mobaxterm
+
+NoMachine
+
+--so to connect the aws Ec2 instance steps :
+
+open the terminal
+
+do ssh -i pem file location username and public ipAddress (not the private one it is only for aws internal uses)
+
+ssh -> this means linux secure shell
+username -> eg --> ec2-user, ubuntu, centos depending on ami
+ip Addresses -> eg ipv4 - 3.56.123.45
+-i -> identity file (private key file to use for authentication)
+
+eg --> ssh -i /Downloads/user/test.pem ubuntu@3.56.123.45
+
+note --> before using the pem file change its permissions if needed
+using chmod 600 file location / chmod u=rw,go= file location
+
+--from aws ui
+
+go to your aws Ec2 instance and click on connect
+
+to delete the Ec2 instance
+
+stop the instance
+
+terminate the instance
+
+so the billing will stop
+
