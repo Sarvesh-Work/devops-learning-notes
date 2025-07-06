@@ -14,6 +14,16 @@ VMware
 Xen
 Example
 
+types of Hypervisors 
+ 
+ there are mainly two types 
+1. bear metal 
+   it means the hypervisors are directly installed on the hardware  without
+   the os it still runs beacouse it has its own mini os like setup 
+
+2. hosted 
+   it simply means the hypervisor those are installed on the os   
+
 Imagine a company with 3 physical servers:
 
 Server 1 for Team 1

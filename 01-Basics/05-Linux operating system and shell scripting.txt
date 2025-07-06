@@ -1,0 +1,71 @@
+Linux Operating System and Basics of Shell Scripting
+
+Operating System:-
+Operating system is a medium between our hardware and software.
+Like Android mobile—consider Samsung. So Samsung creates a mobile which has RAM, battery, speakers. On top of that, it installs the Android OS so user can interact with hardware    easily and also installs external apps.
+So in simple words, operating system is used to communicate with the hardware.
+Whenever any external app wants to use any hardware, OS helps the app to communicate with the hardware.
+
+Ex of OS --> Mac, Windows, Linux, Android
+
+Linux is a free operating system open source and its secure—so thats why its used highly in industry.
+
+Key features of Linux OS:
+free
+
+open source
+
+secure
+
+fast
+
+Basic Architecture of Linux:
+Linux architecture consists of:
+
+kernel
+
+system libraries
+
+system software
+
+applications
+
+compilers
+
+shell
+
+Kernel
+Kernel is the heart of our operating system
+It is used to make communication between our hardware and software
+Key features of kernel are:
+
+device management
+
+memory management
+
+process management
+
+CPU
+
+System Libraries
+If a user installs any application and that application wants to communicate with the hardware (like memory, CPU, etc.)
+it requests that to the system libraries
+System libraries consist of a set of functions or programs which are used to communicate with the kernel
+So that request goes to the system library, and then system libraries ask those things to kernel
+
+Compiler
+In simple words, a compiler converts human-readable source code into machine code (executable format) that a computer can understand and run.
+
+Application
+Application means the external applications like games, Chrome—means anything that is started by user
+
+System Software
+Basic programs for managing the system (disk utilities, text editors, etc.)
+
+Shell Scripting -->
+It is a way of talking with the OS.
+Like Linux has shell commands, ex --> ls, top, touch.
+In Windows we have like graphical interface for all that things—creating file, deleting it, etc.
+So like that on Linux we have shell commands
+
+shell scripting is very handy when it comes to automating tasks or working with system-level stuff
