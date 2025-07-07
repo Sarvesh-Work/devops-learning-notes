@@ -1,0 +1,47 @@
+--Git and GitHub--
+
+--version control system --->
+the version control system mainly addresses sharing versioning reverting and tracking
+means if two developers are working on a project software one has developed a feature and the other one has the second feature now they have developed those locally in their systems now in the end both of the features are going to be there in the project software so for sharing those files we have version control and we can also keep a track of our code and the code quality what feature we are working on also about versioning now in feature one there are some changes the developer has done according to user feedbacks now we can call it the second version of that feature or we have updated our project software entirely so according to our project version we can store the code on version control so if we want to go back to any version we can easily go back
+
+--centralized version control
+centralized means there is only one server where everything gets stored now if a developer wants to make any change he has to connect that server
+so there was only one server if it goes down we could lose everything all users need to connect that server to save the changes
+
+eg---> svn cvs
+
+--Distributed version control
+there is a main server like GitHub or GitLab this is often called the remote repository you clone or fork the code this means we download the entire project history to our system
+
+now we can
+make changes
+commit them locally
+even work offline
+
+when we are ready we can push our changes back to the remote server
+
+Git --->
+git is an open source version control system that allows developers to manage their code or project locally for that we have to download git or big organizations install git on their server so we can commit the changes keep track of it and version our project locally or offline
+
+GitHub --->
+github is an online website that allows users to store their code online do the same thing commit version check the changes if we are working in a team for this we still need git in our system to push the local code to github online
+
+to create a git repository we have to use -- git init -- inside our folder that we want to track the command git init will create a hidden file .git which will keep track of our folder
+
+--git main commands
+1.git add --> to add them in .git so git can keep the track of them
+2.git diff --> to see the changes
+3.git commit --> to save the changes create a version
+4.git log --> to see the commits
+5.git checkout commit id --> to go back on particular commit it just to see what is changed this is safe and doesnt change anything permanently
+6.git reset --hard commit id --> this is for permanently going back on particular version or commit it will remove all the commits made after that one
+
+--interview questions
+
+why we need version control system what is vcs
+
+difference between centralized and distributed version control
+
+what is fork
+
+difference between git and github
