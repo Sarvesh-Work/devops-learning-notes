@@ -1,0 +1,37 @@
+Git branching strategy 
+
+
+Branch--
+
+branching is making a separate line of work without affecting the main one
+means we have created a project now in that we want to add a new feature like login so instead of making changes in main branch we can create a separate branch with name like login feature or anything and modify the code on that branch so if anything goes down it will not affect the main branch also we can test that feature and if it is fine we can merge it with the main or master branch
+
+mainly company follow the strategy like---
+
+Having main branch which will consist of all code
+
+now if we want to add the new features we create a feature branch from main like login and work on it
+
+Also we have created a release branch from main that is publish branch to customers
+
+when the feature we were working on is completed and ready to merge with the main branch so if developers are confident that the new feature is perfect then they merge it to main
+
+After that the new release branch will be created to introduce the new version of our project or app with latest features
+
+Also we have hotfix or bugfix branches which are created from the main
+These are short term branches which are mainly for bug fixing
+Means consider our new release has some bug the user reported it and now the developer creates a new branch to fix that bug then merge it to main
+
+feature/ → new features
+release/ → prepare for release
+hotfix/ → quick fixes to live project
+
+There is also a modern flow which is followed by startups--
+
+creating a main branch
+For new feature creating a feature branch pushing code to that branch
+After that creating a pull request
+
+Then test it review it
+Then merge it to main
+
