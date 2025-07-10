@@ -1,0 +1,61 @@
+-- Git commands and interview questions --
+
+-git init – to initialize the git repository, it will create a .git hidden folder in current directory This .git folder is where git tracks everything
+
+-git add – to add the file(s) into the staging area, so git can keep track of it and prepare it for commit.
+
+-git diff – shows the difference between the current file and the last staged/committed version Helps in seeing what has changed but not yet added
+
+-git checkout – used to switch between branches or view older commits or files from past commits
+
+-git switch – new way of switching branches (same as git checkout but more readable and focused)
+
+=git log – shows commit history in reverse chronological order (latest on top)
+
+-git commit -m "msg" – used to make a commit commits are snapshots of changes and useful for tracking the project state at diffrent points.
+
+-git push – used to upload local repository changes to a remote repo like GitHub
+
+-git clone <repo-url> – to download the full remote repo in your local system
+
+-git remote -v – shows the URL of remote repositories connected to the project
+
+-git branch – to list branches or create a new branch new branches are created from current branch (usually main)
+
+-git checkout -b <branch-name> – to create and switch to a new branch in one step.
+
+
+
+
+
+
+
+
+main commands 
+
+- git merge -git merge is used to combine the branches with main branch but it does not move commits instead it combines both branch histories and creates a new merge commit ex we have 3 commits in main branch then we create a new branch and add 2 commits in new branch then we add 2 more commits in main now when we do git merge from new into main it will bring those 2 new branch commits and combine with mains current state it will not move anything to top just merge both timelines and keep all commits in order
+
+
+-git rebase - git rebase is opposite of merge it also merges but it moves the whole branch and places its commits just after the point where the branch was created ex we have 2 commits in main then we create a new branch and add 3 commits in that meanwhile main also got 2 more commits so now main has 4 commits now when we do git rebase it will move the new branch commits and replay them on top of the commit where we created the branch that is after the second commit so it looks like the branch was created after the 2nd commit and continued from there then comes the remaining 2 main commits
+
+
+- git cherry-pick - used to pick one specific commit from one branch and apply it to another.
+ 
+
+questions 
+
+How to initialize a git repository?
+
+What is git workflow?
+
+What is the difference between git clone and git fork?
+
+How do you merge two branches?
+
+What is rebase and when to use it?
+
+What is cherry-pick in git?
+
+diff between merge and rebase?
+
+when do you use cherry-pick?
