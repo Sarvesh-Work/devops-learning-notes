@@ -1,0 +1,57 @@
+# configuration management using ansible basic 
+
+# system admin task
+before devops, system admins were responsible for managing servers.
+this included updating the system (like centos, ubuntu, etc.),
+installing important dependencies like git, node, etc.,
+to make it easier for developers they use to do some (default installations).
+
+# issue with this
+this was a manual task installing default dependencies updating the system,
+and keeping track of versions on each server was hard.
+if we had 20 to 30 servers managing each one manually was time-consuming 
+
+# solution
+so for this system admins started writing scripts to automate these tasks
+but there were still problems. scripts would change based on the server type.
+for example:
+- for windows you need powershell scripts
+- for Linux you need shell scripts
+- and even in linux different distros like centos, ubuntu, alpine need different approaches
+
+# also with the evolution of cloud computing the number of servers increased 10x
+# managing and configuring them became even harder
+
+# to solve this the concept of configuration management was introduced.
+
+# tools for configuration management:
+# 1. puppet
+# 2. chef
+# 3. ansible
+
+# most devops engineers prefer ansible over other tools.
+
+# why use ansible and not puppet?
+1. puppet uses a pull mechanism, while ansible uses a push mechanism
+2. push means the devops engineer can write scripts in an ansible playbook
+on their local machine and push them to the servers
+3. ansible is agentless. puppet uses a master-slave model,
+ so if a developer creates 10 ec2 instances,
+they need to register each as a slave to the puppet master
+4. with ansible, you just need to put the ip addresses of the instances in the inventory file.no configuration or agent setup is required
+5. ansible supports auto-scaling and dynamic inventory, which can detect new servers automatically
+6. ansible works better with both windows and linux compared to puppet
+7. ansible uses yaml, while puppet has its own language
+
+# disadvantages of ansible:
+1. windows support is still not as smooth as linux
+2. debugging can be hard
+3. performance issues when managing a large number of servers
+
+# interview questions:
+1. what language does ansible use to write modules? → python
+2. does ansible support linux and windows? → yes, linux using ssh, windows using winrm
+3. difference between puppet and ansible?
+4. is ansible push or pull mechanism? → push
+5. which language is used to write ansible playbooks? → yaml
+6. does ansible support all cloud platforms? (tricky) →ansible is cloud-agnostic. it only needs the public ip of the instance. the instance must have ssh enabled and allow inbound connections from your machine. you need to whitelist your ip on the instance to allow access.
