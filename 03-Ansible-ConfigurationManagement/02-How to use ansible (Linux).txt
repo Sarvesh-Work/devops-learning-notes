@@ -1,0 +1,135 @@
+---- How to use ansible -----
+
+# STEP 1: Update the Linux server
+before installing Ansible we need to update our current Linux server
+Command:
+sudo apt update
+
+# NOTE:
+If you are using an AWS EC2 server you need two servers (two EC2 instances).
+From one instance (controller), we can configure the other one (managed node).
+It can be any EC2 instance — Ubuntu, CentOS, Amazon Linux, etc.
+
+# STEP 2: Install Ansible on the controller EC2 instance
+Now install Ansible on the EC2 from which we are going to control everything
+Command:
+sudo apt install ansible
+
+
+
+# STEP 3: Generate SSH keys for passwordless login
+Use the following command to generate public and private keys for SSH authentication:
+ssh-keygen
+
+# tt creates files like:
+id_rsa        --> Private key file
+id_rsa.pub    --> Public key file
+and more
+
+# now go to the 2nd EC2 instance (managed node) and also use `ssh-keygen` there
+It will generate a file called  authorized_keys
+
+# Now copy the public key from the 1st EC2 (controller) to the authorized_keys of the 2nd EC2.
+
+# You can do it using:
+ssh-copy-id ubuntu@<2nd-ec2-private-ip>
+
+# or manually:
+# Copy contents of id_rsa.pub from the controller node
+# And paste it into ~/.ssh/authorized_keys on the 2nd EC2 instance
+
+
+
+# STEP 4: Test SSH connection
+ now if we use the ssh command with the private IP address of the managed node:
+ssh ubuntu@123.56.57.28
+
+It will authenticate and log in without asking for a password (if setup is correct)
+
+
+# NOTE:
+Creating an Ansible playbook file is not always ideal if the task is small (e.g., creating a file, checking disk, etc.)
+For such cases, we can use Ansible Ad-Hoc commands.
+
+# we can take reference for these commands from Ansible documentation.
+
+# Example:
+ansible -i inventory all -m shell -a "df -h"
+
+# Breakdown:
+# inventory  --> File where we add all IPs or instance information
+# -m         --> Tells Ansible which module to use (e.g., shell, apt, service)
+# -a         --> Arguments or commands to run
+
+Ad-Hoc     --> Used for small quick tasks
+Playbook   --> Used to write big reusable scripts
+
+OR 
+
+# STEP 5: Writing an Ansible Playbook (YAML)
+
+1. Create a file with .yml extension
+Eg:
+test.yml or test-playbook.yml
+
+2. In the file, start with ---
+This tells Ansible it's a YAML file
+
+3. after that use - to define a list of playbooks
+
+4. Add name to describe what the playbook does
+example:
+name: Install nginx
+
+5. then define which hosts it should target
+eg:
+hosts: all  --> This means it will target all hosts in the inventory file
+
+6. then define whether to use root or a normal user
+eg:
+become: true  (true means sudo/root access)
+
+7. Start writing the actual script under `tasks`
+eg:
+---
+- name: Install and start nginx
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start nginx
+      service:
+        name: nginx
+        state: started
+
+8. To run the playbook, use the ansible-playbook command:
+ansible-playbook -i inventory test-playbook.yml
+
+
+# STEP 6: Using Roles in Ansible (for bigger projects)
+roles are used to organize your playbooks cleanly and reuse code
+Each role contains its own tasks, handlers, variables, templates, and files
+
+# To create a role structure
+ansible-galaxy init <role-name>
+
+Ex:
+ansible-galaxy init nginx
+
+# This will create the following structure:
+
+# nginx/
+# defaults/       --> default variables 
+# files/          --> static files to copy 
+# handlers/       -- >handlers to notify services 
+# meta/           --> metadata about the role
+# tasks/          -->main tasks go here 
+# templates/      --> Jinja2 templates 
+# tests/          --> test playbooks and inventory
+# vars/           --> other variables 
+
