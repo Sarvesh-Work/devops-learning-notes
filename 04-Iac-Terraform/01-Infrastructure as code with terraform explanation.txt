@@ -1,0 +1,26 @@
+--- infrastructure as code with terraform ---
+
+#what is infrastructure as code
+so consider we want to create a server and configure things like ram, cpu, settings. before iac, devops engineers or system admins used to do it manually — going to aws, azure, creating instances, installing os, configuring storage, cpu, load balancer and many more. this was time taking.
+
+#to solve this, devops engineers started writing scripts (yaml, shell scripting) to automate these tasks
+even if we need 100 instances its easy to create them with just some input everything gets set up automatically
+
+#still iac had a problem
+consider in the beginning we decided to go with aws and wrote scripts for that. later we decided to move to azure we had to write new scripts using azure rm. again if we moved to gcp we had to change the script again.
+
+#to solve this, we use tools like terraform, aws cloudformation, pulumi.
+
+#how it works
+these tools interact with cloud platforms using their apis we just use their modules to write scripts (like in hcl for terraform) internally, the tool configures things according to the cloud platform
+easy to use
+
+#no need to learn each clouds full setup
+#everything is managed in one place
+
+this setup is not limited to instances or servers we can also use it for databases, networks, load balancers, etc.
+
+# terraform vs ansible (both are iac tools but with different purpose)
+terraform is used to create servers, databases, s3 buckets, rds, modify cloud networks, and manage server lifecycle.
+
+ansible is used to install stuff on servers like nginx, nodejs, create users, firewalls, deploy applications, and keep server configs up to date.
