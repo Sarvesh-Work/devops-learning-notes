@@ -1,0 +1,86 @@
+### Terraform How to use  ###
+
+# Advantages
+
+1. Manage any infrastructure
+using terraform it is easy to manage any infrastructure because it talks directly with the cloud provider's API we just have to write playbook(script)
+using terraform language and all the things will be managed by terraform itself
+
+2. Tracking our infrastructure
+we don’t have to check our cloud or track our infrastructure if our infra is created using terraform we just have to go in terraform state file it will explain everything about our cloud like which services we have created everything will be there in state file
+
+3. Standardize configuration
+it means instead of managing the different different cloud platforms separately we can manage it in single go using terraform modules one script for multiple cloud providers
+
+4. Automating changes
+if we have multiple infrastructure and consider we have to increase its storage compute power so when we use terraform simply making changes into terraform script will automatically update our infra
+
+# Terraform life cycle
+
+1. Write --> define the infrastructure configuration in file using terraform module (we can use hashicorp docs for writing script according to provider/cloud)
+
+2. Plan --> plan is like dry run of our file for checking what changes it will make in our cloud provider and see is there any error in our file
+
+3. Apply --> applying configuration we wrote in file to our infrastructure or creating any new resource, service on our cloud provider
+
+# Main three commands of terraform
+
+1. terraform init --> this command reads your terraform file then downloads the provider plugins creates .terraform folder to store downloaded plugins and settings sets up remote backend to store state files
+
+2. terraform plan --> to test or dry run our terraform file for error checking
+
+3. terraform apply --> to execute the things
+
+4. terraform destroy --> to destroy
+
+# terraform script example --->
+# Aws ec2 instance creation
+
+terraform {
+   required_providers {
+     aws={
+        source ="hashicorp/aws"
+        version="~> 6.0"
+
+}
+}
+
+}
+
+provider "aws" {
+ region="us-east-1"
+}
+
+resource "aws_instance" "web_server"{
+   ami="ami-084a7d336e816906b"
+   instance_type="t2.micro"
+
+   tags={
+    Name="terraform_ex"
+
+}
+
+}
+
+# output.tf file ---> in this file we tell the terraform what we want in output like telling after creating ec2 instance give me its instance id public ip and private id etc
+
+# terraform.tfstate ---> terraform uses this file to keep the track of our infrastructure(current state) the resource we have created detailed info about them
+
+# variables.tf file ---> variables in Terraform are like placeholders or parameters instead of hardcoding values (like region, instance type, AMI ID), we define them in one place and use them everywhere
+
+# IMP Notes on state files --->
+1. store state file remotely not in local machine or in GitHub
+2. do not try to make changes in the state file
+3. store state files on remote backends (aws s3 (plus DynamoDB for locking) terraform cloud azure db storage gcp storage)
+
+# Good way -->
+
+add terraform scripts to github
+add terraform state files to remote backends
+
+# Disadvantages
+
+1. state file is a single source of truth
+2. manual changes to the cloud provider cannot be identified and auto-corrected
+3. can become very complex and difficult to manage
+4. trying to position as a configuration management tool as well

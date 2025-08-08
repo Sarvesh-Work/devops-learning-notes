@@ -23,4 +23,5 @@ this setup is not limited to instances or servers we can also use it for databas
 # terraform vs ansible (both are iac tools but with different purpose)
 terraform is used to create servers, databases, s3 buckets, rds, modify cloud networks, and manage server lifecycle.
 
-ansible is used to install stuff on servers like nginx, nodejs, create users, firewalls, deploy applications, and keep server configs up to date.
+ansible is used to install stuff on servers like nginx, nodejs, create users, firewalls, deploy applications, and keep server configs up to date
+
