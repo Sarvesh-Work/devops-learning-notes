@@ -1,0 +1,42 @@
+# ci/cd core part 
+
+# ci cd is 2 steps
+# 1 continuous integration
+# 2 continuous delivery
+
+# continuous integration is a set of tools and processes which we do before delivering our application to customers
+
+# continuous delivery is the process where we deploy our application so users or consumers can use it
+
+# example of how we use ci cd --->
+
+we have an application or a developer developed an application
+now we want to deploy that application so users all over the world  can use it
+
+before doing that we need to test our application for bugs
+and do some testing like unit testing automation testing code quality checks generating reports
+
+then deploying the application
+
+if we do these things manually it will take a lot of time
+--> so for this we use ci cd to automate these things <--
+
+# proper flow --->
+
+1. developer develops an application or a feature
+2. it is pushed to github
+3. devops engineer integrates jenkins jenkins is an orchestrator that automates and integrates various tools in a pipeline or github actions with that github repo which will look for all commits and prs
+4. in jenkins we will integrate the required tools for automation like junit testing sonar reporting tools docker and configure them
+5. now whenever a developer makes any commit jenkins will run the pipeline on the new changes and do the things required before deploying the application
+
+# --> this is one scenario in industry also the staging scenario is there 
+
+same flow  but slight changes.  first jenkins deploys our application on some dev environment where a low server cpu is there to check the application
+
+after good feedback jenkins promotes our application to staging where a more powerful server will be there to check the application
+
+take feedback and promote application to production
+
+this flow will check our application on every configuration to provide rich user experience to users
+
+*** also there is a problem with jenkins it does not support auto scaling of our infrastructure like github actions gitlab ci or circleci do meaning when no commits are happening these tools automatically scale down for cost control ***
