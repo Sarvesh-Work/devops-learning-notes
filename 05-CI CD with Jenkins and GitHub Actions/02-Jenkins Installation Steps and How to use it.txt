@@ -1,0 +1,86 @@
+### Jenkins Installation Steps ###
+
+1. Create an EC2 instance on AWS  
+   This instance will act as Jenkins Master.
+
+2. Install Jenkins on that EC2 instance
+
+   # Step 1: Update the instance and install JDK 17
+   sudo yum update -y
+   sudo yum install java-17-openjdk -y
+   sudo yum install java-17-openjdk-devel -y
+
+   # Step 2: Enable Jenkins repository
+   sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+   sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+   # Step 3: Install Jenkins
+   sudo yum install jenkins -y
+
+   # Step 4: Start and enable Jenkins service
+   sudo systemctl enable jenkins
+   sudo systemctl start jenkins
+   sudo systemctl status jenkins
+
+   # Step 5: Open firewall for Jenkins port 8080
+   sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
+   sudo firewall-cmd --reload
+
+   # Step 6: Get the initial admin password
+   sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+   # Step 7: Open Jenkins in browser
+   http://<YOUR_SERVER_IP>:8080
+
+   Enter the password from above command  
+   Install Suggested Plugins  
+   Create your first admin user  
+
+
+### old way of using Jenkins ###
+
+Previously Jenkins was using a master instance where UI and job triggers were happening.  
+We were also using worker nodes on EC2 instances where builds were running.  
+We needed worker nodes because we could not run every build on the master instance as it could slow down.  
+
+example:  
+Jenkins master (main EC2 instance)  
+Worker 1 EC2 with Java and Maven installed  
+Worker 2 EC2 with Node.js installed  
+Worker 3 EC2 with Python installed  
+
+problems with this approach:  
+1. We need to create a new instance for a new worker node  
+2. Installing dependencies again and again on each EC2  
+3. If a worker goes down we need to install everything again  
+4. Maintenance overhead  
+
+
+### New approach / modern approach ###
+
+the new approach uses Docker containers to run builds instead of creating worker nodes on EC2.  
+
+the Docker containers run the builds inside the same EC2 where Jenkins master is running in an isolated format.  
+When the task is done the container gets destroyed.  
+
+Using this we can optimize billing by using only one EC2.  
+Because of containers we do not need new EC2 instances for running different builds.  
+
+
+### Jenkins pipeline script ###
+
+in Jenkins mostly we write pipeline scripts using Groovy language.  
+We can also use shell scripting in some cases.  
+
+simple Jenkins pipeline script:  
+
+pipeline {
+    agent any
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World from Jenkins'
+            }
+        }
+    }
+}
