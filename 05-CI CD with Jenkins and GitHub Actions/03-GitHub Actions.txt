@@ -1,0 +1,74 @@
+## GitHub Actions ##
+
+# This is new tool that we use  for CICD
+# its simple to use compare to Jenkins
+
+# We gust have  to write the  workflow file inside our  code 
+# like .GitHub/workflow this is the  folder structure  we need to flow while write the  workflow file in our  code
+
+# To write the workflow script we use Yamal language.
+# The flow is like when we push any new code to the  GitHub it will run those  test cases automatically.   
+# It works well with git commits and pr.
+# Mostly good when our  code is public/open source. (Private repo has limited free tire)
+# GitHub Action made for GitHub so it works well with GitHub.
+# Its easy to use than Jenkins only write the workflow file GitHub will do remining stuff.
+
+       
+Difference Jenkins and GitHub Actions 
+
+Jenkins --- > 
+1. self hosted (we need to create the server).
+2. complex setup.
+3. works well with all (GitHub, GitLab, Bitbucket).
+4. advance customization available.
+5. strong community support.
+6. Jenkins is free but  we have to pay server cost.
+
+
+GitHub Action --->
+1. Hosted on GitHub no need to create the server.
+2. Easy to setup only write workflow file inside the code.
+3. woks good with GitHub.
+4. New less community support compare to Jenkins.
+5. Dont have advance customizations or flexibility compare to Jenkins.
+6. Free for open source public repos.
+
+
+
+# When to use  Jenkins
+1. needed self hosted server.
+2. customization.
+3. project is not on GitHub.
+4. Good for complex pipelines.
+
+
+# When to use GitHub Actions 
+1. Code is on GitHub.
+2. Dont need customization.
+3. Dont want server overhead.
+4. when we have to work fast. 
+
+
+# simple GitHub Action Workflow code.
+name: Simple GitHub Action
+
+# When this workflow should run
+on:
+  push:
+    branches:
+      - main  # runs when code is pushed to main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # environment to run in
+
+    steps:
+      # Step 1: checkout the  repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Run a simple shell command
+      - name: Print Hello World
+        run: echo "Hello from GitHub Actions"
+
+

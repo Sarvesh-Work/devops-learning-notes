@@ -84,3 +84,12 @@ pipeline {
         }
     }
 }
+
+
+# Explanation:
+1. pipeline { }  → Main block
+2. agent any    → run on any available Jenkins agent
+3. stages { }   → Group of steps
+4. stage('Hello') → a stage named "Hello"
+5. steps { }    → actual tasks inside the stage
+6. echo         → prints "Hello World from Jenkins" in logs
