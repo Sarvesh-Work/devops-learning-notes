@@ -1,0 +1,68 @@
+
+
+#Virtual Machines
+A virtual machine is like running a full computer inside another computer
+Each VM has its own operating system and uses cpu ram and storage
+Problems with VMs are that they are heavy and slow
+Each VM wastes resources because every one needs a full OS
+They take time to start and are harder to move between systems
+
+#Containers
+A container is a lightweight box that has the application code and its libraries
+It shares the host OS kernel so no need for full OS inside
+Benefits are that they are small fast portable and isolated
+Many containers can run on one machine making better use of resources
+They are perfact for microservices and cloud deployment
+
+#Docker
+Docker is a tool that helps us work with containers
+It allows us to build run and share containers
+Key terms
+Image is a template to create containers
+Container is a running instance of an image
+Dockerfile has steps to build an image
+Registry like Docker Hub stores images
+
+#Docker Lifecycle
+1 Write a Dockerfile
+2 Build the image using docker build
+3 Run a container using docker run
+4 Push the image using docker push
+5 Pull the image using docker pull
+
+#Problems with Docker
+All containers share the same kernel which may be a security risk
+Images can get very large
+Networking and multiple containers can be complex
+It needs the docker daemon running in background
+
+#Buildah
+Buildah is another tool for building container images
+It works without docker daemon
+It is lighter and gives more control for scripting
+It is also oci compliant and works with Kubernetes
+
+#Why containers are used
+Before containers applications needed VMs which were heavy
+Containers are faster and more portable
+They package code and dependencies together
+They make isolation easy so no conflicts between apps
+They allow developers testers and companies to run apps anywhere with same setup
+Containers help scaling apps quickly when more users come
+
+#VM vs Container
+VM gives the base machine
+Container gives the application box
+With VMs each one needs a full OS so memory and cpu are wasted
+With containers they share the OS so more apps can run on fewer VMs
+Instead of 10 VMs for 10 apps we can run 10 containers inside one VM
+This saves cost and makes deployment simple
+
+#Real world use cases
+Developers run the same environment on laptop and cloud
+Testers quickly create and destroy clean containers
+CI CD pipelines use containers for automation
+Companies run microservices in separate containers
+Cloud providers run apps in containers for customers
+
+
