@@ -1,0 +1,100 @@
+##### Detailed Notes on Containers and Docker
+
+# Containers
+   A container is a small unit where we can run our application in isolated way
+   It includes the application code and all dependencys like libraries runtime tools configs
+   Containers run on top of the host operating system but stay separated so one container will not disturb another
+   This makes them great for running multiple apps on same machine without problmes
+   The main idea is build once run anywhere because container will behave same on laptop server or cloud
+
+# Why are they light weight with details
+   Containers are light weight because they do not need a full operating system
+   A virtual machine runs a full OS like linux or windows inside it which takes a lot of ram and cpu
+   Container just uses the host kernel and only packs the things required like the binaries and libs
+   Startup time of container is in seconds while VM may take minutes
+   They also take less disk space because multiple containers can share same base image layers
+   For example if 5 containers are using ubuntu base image it will be stored only once not 5 times
+
+# Docker
+   Docker is the platform that made containers very easy to use
+   It gives commands and tools to create images and run containers
+   Docker uses client server model where docker client talks to docker daemon
+   We can build image with docker build
+   We can run container with docker run
+   We can stop container with docker stop
+   We can remove container with docker rm
+   Docker also provides docker hub which is like github but for container images
+
+# Docker LifeCycle
+   Step 1 Write Dockerfile with all instructions
+   Step 2 Build the image using docker build
+   Step 3 Run the container from image using docker run
+   Step 4 Use docker ps to see running containers
+   Step 5 If container is not needed stop it with docker stop
+   Step 6 Start it again with docker start
+   Step 7 If fully not needed remove it with docker rm
+   Step 8 If image not needed remove with docker rmi
+   This whole cycle is called docker lifecycle
+
+#Installation
+   On linux use commands like apt install docker or yum install docker
+   on windows and mac install docker desktop from docker site
+   After installing check docker --version
+   Enable docker service with systemctl start docker on linux
+   Add your user to docker group to run without sudo
+   Verify by running docker run hello-world which pulls a small test image and runs it
+
+#Writing first Dockerfile
+   Dockerfile is a text file with instructions to build image
+   Every line has an instruction like FROM RUN COPY CMD
+   example node app dockerfile
+   FROM node:14
+   WORKDIR /app
+   COPY package.json .
+   RUN npm install
+   COPY . .
+   CMD node index.js
+   From this dockerfile we build with docker build -t myapp .
+   Then run it with docker run -p 3000:3000 myapp
+
+#Interview Questions
+   What is container and how is it different from VM
+   Why are containers light weight
+   Explain docker architecture
+   What is difference between image and container
+   Explain dockerfile and its role
+   What are docker volumes and why we need them
+   How to persist data in containers
+   What is docker compose
+   Can you explain docker networking types bridge host none
+   How do you reduce docker image size
+   Difference between docker run and docker exec
+
+
+   Containers are very useful in microservice architecture where each service runs in its own container
+   Docker compose allows us to run multiple containers together with one yaml file
+   Docker hub is a cloud registry to push and pull images
+   We can make custom private registry also
+   For scaling containers across many machines we use orchestration tools like docker swarm or kubernetes
+   In real projects docker ensures developer machine and production server are same so less bug due to environment
+   Companies use CI CD pipelines with docker so that build test deploy happens automatically
+   Docker has concepts like volumes for persistant data and networks for container communication
+   These are key for running real applications
+
+# Difference 
+
+# Image
+   An image is like a blueprint or template
+   It has everything required to run an app like code libs runtime and configs
+   Image is read only once created it does not change
+   we can build an image using a dockerfile
+   Example node:14 or ubuntu:20.04 are images
+   Image is stored on disk and can be shared or pushed to docker hub
+
+# Container
+   A container is the running instance of an image
+   When we run docker run myimage it creates a container from that image
+   container is like a live process with its own file system network and isolated space
+   unlike image container can be stopped started or deleted
+   We can also run multiple containers from the same image
+   For example we can run 5 containers all using the node:14 image
