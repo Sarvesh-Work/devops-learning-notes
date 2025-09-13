@@ -1,0 +1,44 @@
+#### Multistage builds and Distroless images   #####
+
+# Normal build
+in a normal docker build we use a single base image like ubuntu or node alpine and we install everything in it dependencies libraries code and final run time also.
+because of this the final image becomes very heavy in size as it carries both the build tools and the production requirements.
+example in a node app we take node 18 base image install dependancies build the code and also run the app in the same container.
+this means image contains npm cache build tools compilers everything even if they are not needed for production.
+
+# Multistage build
+in multistage we split the dockerfile into stages.
+first stage is build stage we take a heavy base image like node 18 or ubuntu install dependencies run npm install and npm run build.
+second stage is production stage we take a light base image like node alpine or nginx and copy only the build output from the first stage.
+this way final image size is very small because it contains only runtime and compiled files not the full build system.
+example in react app we build with node 18 and copy build folder into nginx alpine image final image size is about nginx size plus the build files only.
+the builder stage is discarded it does not add its size to final image.
+
+# Difference 
+normal build has big size includes build tools compilers and dev dependancys.
+multistage build has small size includes only runtime and app files.
+normal build is easy but not secure.
+multistage build is more secure faster and prod ready.
+
+#node 18 vs node alpine.( difference between small and large images and why the  are  good)
+node 18 is full debian based heavy image with many libraries included good for building and debugging.
+node alpine is light weight around 5 to 60 mb depending on version less libraries so small attack surface good for production.
+so in practice we use node 18 in build stage and node alpine in production stage.
+
+#Distroless images
+distroless images are provided by google.
+these are not full os images they only contain runtime binaries and minimal required libraries.
+no shell no package manager no extra tools.
+this reduces attack surface and makes images more secure and smaller.
+for example gcr.io/distroless/nodejs18 only has node runtime and few libraries nothing else.
+this means you cannot open shell or install extra pakages inside container.
+distroless images are perfect for production but not for development or debugging.
+normal ubuntu or alpine image is like a full house with kitchen fridge etc.
+alpine is small house with basics.
+distroless is only the room with what you need to run app nothing extra
+
+#Final note
+multistage builds help us reduce image size and improve security by separating build and production.
+distroless images take this further by removing os completely and keeping only runtime
+final image size in multistage is calculated as last stage base image plus copied files not the size of all stages.
+always use heavy image for build and light or distroless for production.
