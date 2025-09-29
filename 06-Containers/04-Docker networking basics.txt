@@ -1,0 +1,52 @@
+## Docker networking ##
+
+#why networking important
+networking is important when we want one docker container to communicate with another container
+eg--> consider we have a vm in that we installed docker. now 2 containers are running on that 
+vm. consider one is frontend(eg-> React app) container and other is backend(e.g--> Node.js, Spring Boot, Django) container
+now the frontend container needs to talk to backend container and vise versa. for this networking is required. so one container can talk to another container
+
+#### By default containers are isolated from host and partially isolated from another container inside the vm or computer. #####
+
+1. Bridge networking --->
+bridge networking is default networking in docker when we create a container in vm by default it uses 
+bridge networking. so this default bridge networking is used by container to talk with host and other container. this is default behaviour
+when we install docker it creates a virtual ethernet bridge called docker0
+
+when we create the container docker gives a virtual ethernet interface to that container. this interface is connected to the host with a veth pair
+this veth pair is handled by docker0 and docker0 is connected to eth0 of the host.
+so all containers are connected to docker0 through the virtual ethernet bridge using veth pair. they are in same subnet and can communicate with each other by ip but not by name. containers are isolated from host unless ports are exposed
+we can make them easier to communicate and resolve names by creating a custom bridge network
+
+# command to create the custom network ---> docker network create <network name>
+
+# fully isolated container
+to create a fully isolated container from other containers we can create a custom bridge network and put only the container we want in it
+containers on different custom networks cannot communicate with each other
+eg-->
+docker network create isolated-net
+docker run --name backend --network isolated-net backend-image
+docker run --name frontend --network isolated-net frontend-image
+now backend and frontend can talk only to each other and other containers on default or different networks cannot access them
+if you want a container fully isolated from all other containers, put it on its own custom network and do not expose ports to host
+
+2. Host networking --->
+as name suggest container uses the host network. container does not have any separate network it will have same ip, ports like host.
+container does not get any separate ip address. it is less secure. port conflicts can occur if multiple containers use same port
+container isolation from host is not possible in host networking
+networking is faster because no NAT involved
+
+# key differences
+
+default bridge
+- container has separate ip
+- isolated from host unless ports exposed
+- can communicate with other containers by ip
+- cannot communicate by name unless custom bridge
+
+host network
+- container uses host ip
+- no isolation from host
+- port conflicts possible
+- communication same as host
+

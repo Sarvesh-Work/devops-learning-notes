@@ -1,0 +1,14 @@
+### Docker interview  questions ###
+
+1.what is docker?
+2.what is container / how containers are  different  from virtual machine?
+3.what is docker life cycle? 
+4.what are the different docker component?--> all about docker  
+5.what is difference between docker copy and docker add?
+6.what is difference between cmd and entrypoint in docker?
+7.what are the networking types in docker and what is the default?
+8.can you  explain how to isolate networking between the container?
+9.what is multi stage build?
+10. what are distroless images in docker?
+11.docker challenges? 
+12.what steps would you tack to secure containers?
