@@ -1,0 +1,96 @@
+## Docker Compose  ###
+
+# Problem with Docker --->
+we have an application in which we have:  
+1. backend  
+2. database  
+3. frontend  
+4. redis  
+
+for these things we have to create separate containers with the flow -->  
+1. creating dockerfile  
+2. running the command docker build <title> then docker run <imagename>  
+
+this we have to repeat for creating each container like for backend container write same command then for frontend, database same thing we have to repeat.  
+
+for a new developer the setup is a nightmare doing all these things one by one.  
+setting up the tags again and again.  
+
+also if the developer has added a new feature in the application, for testing also we need to run these commands multiple times with the code changes and writing these commands with the tags/arguments/flags is a nightmare.  
+
+we can forget the flags
+stopping and starting is hard, again go with lengthy commands
+order maintaining is important for dependencies.  
+
+
+### To solve above problems docker compose came in picture ###  
+
+## Docker Compose
+it is a tool that manages multiple containers at the same time using a single yaml file.  
+
+in that we define our containers.  
+to run this docker-compose yaml file we use:  
+
+docker compose up
+
+this will run/start all the containers mention in the file.  
+
+
+## example
+
+version: "3.8"
+
+services:
+  db:   # this name can be anything
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+
+  redis:  # this name can be anything
+    image: redis:latest
+
+  app:   # this name can be anything
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - redis
+
+here we are starting containers using one yaml file with proper sequence.  
+the depends_on manages the order of running containers based on dependencies.  
+also we can pass flags like ports, environment, volumes, etc inside the yaml.  
+
+
+
+## Some useful commands  
+
+docker compose up           # build (if needed) and start containers
+docker compose up -d        # run containers in detached mode (background)
+docker compose down         # stop and remove containers
+docker compose build        # build images defined in yaml
+docker compose ps           # list running containers
+docker compose logs <svc>   # check logs of a service
+docker compose stop         # stop containers without removing
+docker compose restart      # restart containers
+
+
+
+## Some important flags in docker-compose.yaml
+
+- build: tells docker to build the image from a dockerfile (you can also give context like build: ./backend) 
+- image: use an existing image (like mysql:latest).  
+- ports: maps ports from container to host ("3000:3000" → hostPort:containerPort).  
+- environment: pass environment variables to the container (MYSQL_ROOT_PASSWORD=123)
+- volumes: mount directories/files from host into the container.  
+- depends_on: specify dependency order between services.  
+- restart: restart policy (like always, on-failure).  
+- command: override the default command of the container.  
+
+
+
+## Some use cases of docker compose
+1. local development environment  
+2. automation testing in ci/cd  
+3. microservices projects  
+4. rapid prototyping
