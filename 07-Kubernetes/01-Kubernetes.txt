@@ -1,0 +1,28 @@
+### kubernetes ###
+
+kubernetes is an orchestration platform.
+
+an orchestration platform is a system that automatically manages the deployment, scaling, networking, and operation of containers or services across multiple machines.
+
+# docker problems:
+
+1. docker does not support auto scaling: 
+   consider we have an application running inside a container. suddenly the user load increases and the single container will be overwhelmed by the requests.
+   at this time we need to set up multiple containers manually. but we cannot predict the load so manually adding or removing containers is hard.
+
+2. auto healing / container management: 
+   consider we have multiple containers on an ec2 instance and one of them goes down. 
+   docker does not track which container goes down, so we need to monitor manually. it cannot restart failed containers automatically.
+
+3. does not have enterprise-level features like:
+   - load balancing
+   - firewall
+   - auto scaling
+   - api gateway
+
+4. single host problem:
+   docker is installed on one host computer / ec2 and has limited cpu, ram, etc. handling multiple containers on a single host is hard. 
+   even if we create a new ec2 and run containers there, tracking all containers is difficult. 
+   we would need to ssh manually, check container health, and handle load balancing ourselves.
+
+kubernetes solves most of these problems (not 100% but it is gradually evolving) and has a big community.

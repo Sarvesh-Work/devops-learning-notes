@@ -1,0 +1,67 @@
+*** KUBERNETES ARCHITECTURE ***
+
+1. we install Kubernetes on a cluster (group of computers/ec2/machines)
+2. Kubernetes has 2 types of nodes
+         a. Master Node
+         b. Worker Node
+  Master Node -> this has a Control Plane that controls all the Worker Nodes
+  Worker Node -> this is where our containers/pods are present, inside those containers the applications run
+
+## we can have multiple Worker Nodes ##
+
+## components of Worker Nodes
+
+1. kubelet -> helps to run the pods/containers continuously, monitors all the pods present on the Worker Node
+   if any pod goes down, it tells the Container Runtime (containerd default runtime) to start the pod, and also reports to the Master Control Plane
+
+2. container runtime -> runs the pods/containers and provides the environment for running
+
+3. kube-proxy -> handles networking and IP assignment for pods
+
+## components of Master Node or Control Plane
+
+1. API Server -> brain of the cluster
+   entry point of the cluster
+   every command hits the API Server
+   manages the state of pods
+   validates requests
+   communicates with Worker Node kubelet
+
+2. Scheduler -> used to deploy pods on Worker Nodes
+   takes pending pods from API Server and selects the best Worker Node for them
+   decision based on CPU, RAM, Storage etc
+
+3. etcd -> like a database
+   stores the state of pods
+   only API Server communicates with it
+   also acts as backup because it stores previous states too
+
+4. controllers -> this continuously monitors the cluster state 
+and checks the actual state and desireds  state according to that do the modification.
+controller only sends request to api server then api server tells kubelet which is on worker node 
+then it tells container runtime 
+
+## CONTROLLER TO POD FLOW ##
+
+### Controller (Master Node)
+- continuously monitors the cluster state via API Server
+- checks if any pod is missing / crashed / not matching desired state
+- if action is needed, controller updates the API Server with instructions
+  - example: “Pod XYZ should run on Node1”
+
+### API Server
+- receives instructions from controller
+- stores desired state in etcd
+- notifies the kubelet on the target Worker Node
+
+### Kubelet (on Worker Node)
+- reads the desired state from API Server
+- compares with actual state of pods on that node
+- if pod is not running, kubelet tells container runtime to start the pod
+
+### Container Runtime (containerd)
+- actually pulls the image if needed
+- starts the container(s) for the pod
+- kubelet monitors the pod and reports back to API Server
+
+ 
