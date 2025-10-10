@@ -39,7 +39,7 @@
 4. controllers -> this continuously monitors the cluster state 
 and checks the actual state and desireds  state according to that do the modification.
 controller only sends request to api server then api server tells kubelet which is on worker node 
-then it tells container runtime 
+then it tells container runtime to run the pod or stop , restart 
 
 ## CONTROLLER TO POD FLOW ##
 
@@ -64,4 +64,18 @@ then it tells container runtime
 - starts the container(s) for the pod
 - kubelet monitors the pod and reports back to API Server
 
+
+
+## Pods 
+
+this is a small unit of kubernetes 
+the kubernetes manages the pods not the containers 
+we can have multiple container inside the pod (mostly we have only one)
+pod will have ip and all container inside that pod will have  same ip
+
+this is gust a wrapper around the container that helps 
+kubernetes to handle lifecycle of them like autoscaling, auto healing, managing it  at cluster level  
+
+easy for communicating cluster-wide valid ip  not a host or node limited ip 
+no port conflicts like docker containers
  
