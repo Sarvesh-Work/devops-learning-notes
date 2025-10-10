@@ -78,4 +78,21 @@ kubernetes to handle lifecycle of them like autoscaling, auto healing, managing 
 
 easy for communicating cluster-wide valid ip  not a host or node limited ip 
 no port conflicts like docker containers
+
+we can run pods with the help of yaml file  means writing yaml file here we define image,   port , volume etc 
+this help if we are working in team 
+also for versioning. 
+so we dont have to remember  the commands every time      
  
+
+ ex---> 
+ apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      ports:
+        - containerPort: 80
