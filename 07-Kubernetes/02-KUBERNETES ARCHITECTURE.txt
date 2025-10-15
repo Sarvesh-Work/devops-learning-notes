@@ -96,3 +96,28 @@ spec:
       image: nginx
       ports:
         - containerPort: 80
+
+
+
+# deployment and replicaset notes
+
+pods dose not have  auto healing autoscaling it is like a container 
+so in production mostly we use  deployment which creates pods in the end 
+         
+
+deployment:
+ it is a rapper around the pods 
+ deployment is used to manage and update multiple replicas of a pod.
+ it ensures that the desired number of pods are always running.
+ if a pod fails, the deployment automatically replaces it.
+ it also supports rolling updates and rollbacks.
+
+replicaset:
+replicaset is responsible for maintaining a stable set of replica pods.
+it ensures that the specified number of pod replicas are running at all times.
+replicaset does not handle updates or rollbacks by itself.
+deployment internally uses replicaset to manage pods efficiently.
+
+
+
+
