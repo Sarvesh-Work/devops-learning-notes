@@ -1,0 +1,26 @@
+## Services in Kubernetes ##
+
+a service in kubernetes is a way to expose a set of pods as a network service
+Pods are temporary and can die or restart at any time So their IP addresses keep changing. To make communication stable between components kubernetes provides a service which gives a constant endpoint to access those pods.
+
+Services help in connecting microservices running inside the cluster For example a frontend application can talk to a backend service without worrying about pod IPs
+
+there are mainly four types of services in kubernetes
+
+ClusterIP
+This is the default type It exposes the service on an internal IP inside the cluster it means the service is reachable only from within the cluster it is useful for internal communication like between backend and database.
+
+NodePort
+This type exposes the service on a specific port of each node tt maps a port from the node to the service you can access the service using NodeIP and the NodePort It is a simple way to access your app from outside the cluster during development or testing.
+
+LoadBalancer
+this type is mostly used in cloud environments it creates an external load balancer and connects it with your service it automatically assigns a public IP this is commonly used in production when you want to expose your app to the internet.
+
+ExternalName
+This type maps a service to an external DNS name. it is used when your service needs to connect to something outside the cluster like an external database or API It does not create any proxy, it just returns a CNAME record
+
+Each service selects the pods it should send traffic to using labels and selectors\ For example if your pods have a label app=myapp then your service can use selector app=myapp to route traffic to them
+
+inside the cluster every service gets its own DNS name and IP So other pods can access it using that DNS name. Kubernetes also automatically load balances traffic between the pods behind the service.
+
+
