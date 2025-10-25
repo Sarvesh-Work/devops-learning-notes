@@ -1,0 +1,66 @@
+#### INGRESS IN KUBERNETES ####
+
+What Is Ingress  
+ingress is a k8s component that works like an entry gate for all external traffic comming into the cluster  
+it helps expose many servics running inside the cluster using single external ip or load balancer  
+it handles routing based on path or host rules
+
+# WHY WE NEED INGRESS  
+without ingress if we expose multiple services each service will need its own load balancer or nodeport  
+this increases cost and makes things more messy because each service gets a seperate public ip  
+also dns ssl and routing will need to be managed speratly for each service  
+
+# EXAMPLE WITHOUT INGRESS  
+suppose we have two services frontend and backend  
+each has three pods  
+if we expose both using service type loadbalancer  
+then  
+- two separate aws load balancers will be created  
+- each will have its own public ip  
+- you will need two dns entries like  
+   frontend.myapp.com - lb1  
+   backend.myapp.com - lb2  
+- you will also need to manage ssl certificates separately for both  
+- you cannot easily do path based routing like /api goes to backend and / goes to frontend  
+- features like rate limiting or authentication will need to be added in each service separately  
+
+# PROBLEM SOLVED BY INGRESS  
+ingress controller creates only one external load balancer  
+it sits in front of all services and decides where to send traffic based on rules  
+so cost is less and management becomes easy  
+you can manage tls dns and routing rules from one place  
+you can also apply security rules like allow or deny lists globally. (white listing , black listing )  
+
+# EXAMPLE WITH INGRESS USING YOUR CASE  
+suppose you have two projects notes app and ecommerce app  
+you create two namespaces notes and ecommerce  
+inside notes you have services like frontend backend  
+inside ecommerce you also have frontend backend  
+now each project can have its own ingress  
+notes ingress handles routes like  
+   notes.example.com - notes frontend service  
+   notes.example.com/api - notes backend service  
+ecommerce ingress handles routes like  
+   shop.example.com - ecommerce frontend service  
+   shop.example.com/api - ecommerce backend service  
+both ingresses will get their own load balancers but within each project services are managed under that single lb  
+so everything stays organized dns is seprate for each project ssl is managed at ingress level and you get isolation using namespaces.  
+
+# KEY FEATURES OF INGRESS  
+- path based routing  
+- host based routing  
+- single entry point  
+- centralized tls ssl handling  
+- authentication and rate limiting at one place  
+- easy management and cost saving  
+
+# NAMESPACE RELATION WITH INGRESS  
+namespace works like a folder inside your cluster  
+you can have separate ingress resources inside each namespace  
+so resources of one project never conflict with another  
+for example notes frontend service and ecommerce frontend service can have same name because they live in different namespaces  
+
+ingress is like a smart traffic manager  
+it recives all external requests from the internet.
+based on host and path rules it sends them to correct service inside cluster  
+it reduces cost simplifies dns and ssl management and keeps traffic flow clean and centralised
