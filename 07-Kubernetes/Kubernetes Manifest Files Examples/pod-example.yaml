@@ -1,0 +1,17 @@
+# question: create a Pod named "my-app-pod" using the nginx image
+# It should expose container port 80
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-app-pod # -- pod name 
+  labels:
+    app: nginx-app # -- label for grouping 
+spec:
+  containers:
+    - name: nginx-container  # -- container name
+      image: nginx:latest  #  --- image name
+      ports:
+        - containerPort: 80 #-- exposing the container port
+
+# pod name and container  names  are different   

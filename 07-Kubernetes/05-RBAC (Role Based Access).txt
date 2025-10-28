@@ -1,0 +1,71 @@
+## RBAC ##
+
+it means Role-Based Access Control.
+
+The use of RBAC is divided into 2 parts:
+1. User
+2. Service Accounts
+
+
+### 1. User Based Access
+
+consider we have QA and Dev teams which are developing the application and have access to the Kubernetes cluster.  
+what if a QA member accidentally deletes the deployment, secrets , namespace  because they have access to everything
+
+Now for this RBAC comes into play  
+Using RBAC, we can define **role-based access control** to limit what each user can do
+
+
+
+### 2. Service Based Access
+
+This is for pods or apps that need to interact with the cluster
+like accessing secrets or tools such as Jenkins, ArgoCD, or GitHub Actions
+So for this we can give permissions that define what they can access in the cluster
+
+
+### RBAC Main Components
+
+1. Service Account / Users  
+2. Roles / ClusterRoles  
+3. RoleBinding / ClusterRoleBinding  
+
+These components together define **RBAC**.
+
+
+
+### How to Create a User
+
+Kubernetes does not handle user management itself it offloads this to an identity provider
+We can use IAM users when using EKS, and the same goes for Azure or Google Cloud
+
+You can also integrate with tools like **Keycloak**, **LDAP**, or **Okta**, etc
+(this is for managing users)
+
+
+
+### Service Account
+
+This is just a YAML file. similar to Pod, Deployment, or Service.  
+the default service account is automatically attached unless you specify another one
+
+
+### How to Manage Permissions
+
+for this we have --> 
+
+1. Role / ClusterRole  
+2. RoleBinding / ClusterRoleBinding  
+
+- We define the permissions inside the Role and attach them to the user this is called **RoleBinding** 
+- For a single namespace, we define a **Role**.  
+- For permissions across the whole cluster, we use a **ClusterRole** and **ClusterRoleBinding**.  
+- To bind them to users or services we use **RoleBinding** or **ClusterRoleBinding**.
+
+
+
+### Example
+
+Define a role.yaml file add the required permissions and attach it to the user or service (like a developer)  
+Now that developer will have only those specific permissions nothing more
+
