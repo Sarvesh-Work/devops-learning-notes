@@ -1,0 +1,57 @@
+## Custom Resources ##
+
+
+extending the features or api of Kubernetes means creating custom resources 
+we can add new  apis without modifying its core code 
+
+
+
+# There are two main ways of extending the  apis
+
+1.custome resource definition(CRD)
+2.custom controller 
+
+
+1. CRD 
+
+now Kubernetes has built in resources 
+
+1.pod
+2.deployment
+3.services
+4.configMap
+
+this are the core part 
+
+but instead of this if we want to use extra stuff in kub for that we create  
+CRD  this allows use to define  the custom resource types inside kub.
+
+ex--> we defined a new CRD student(only for ex -- this we will create in yaml file) and applied it  now kub will have  all its core features and student feature extra this is same as pod , services with its own features.
+
+now we can create  the  same  student  custom resource and validate  it with that CRD like  we  do with deployment. when we create  a deployment the Kubernetes will validate our  deployment yaml file with the  actual 
+crd which is defined by kub developers(some  thing like syntax checking)
+
+2.custom  controller 
+
+now  crd only defines the  types but they dont do the action like  executing the CR or managing the life  cycle of that custom resource it is done by custom controller. it watches the  CRs and performs the logical actions.
+
+way of writing custom controller is Golang or in Python , Java
+
+## but Golang is has much support 
+
++-------------------------------------+----------------------------------------------+
+| Component / Concept                 | Description                                  |
++-------------------------------------+----------------------------------------------+
+| CRD (Custom Resource Definition)    | Defines your own API resource type           |
+| CR (Custom Resource)                | An instance of your new resource             |
+| Controller / Operator               | Watches CRs and performs actions             |
+| Extending Kubernetes API            | Adding new behavior via CRDs + Controllers   |
++-------------------------------------+----------------------------------------------+
+
+
+
+
+    
+
+
+    
