@@ -1,5 +1,5 @@
-# question: create a Pod named "my-app-pod" using the nginx image
-# It should expose container port 80
+#create a Pod named "my-app-pod" using the nginx image
+
 
 apiVersion: v1
 kind: Pod
